@@ -1,6 +1,8 @@
 FROM hub.c.163.com/public/ubuntu:16.04-tools 
-MAINTAINER yivanus yivanus@gmail.com 
-RUN mkdir -p /var/mindx/meteor && chmod 777 /var/mindx/meteor 
+LABEL MAINTAINER="yivanus@gmail.com"
+RUN mkdir -p /var/mindx/meteor && chmod 777 /var/mindx/meteor
+RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak && \
+sed -i 's/http:\/\/archive.ubuntu.com/http:\/\/mirrors.aliyun.com/g' /etc/apt/sources.list
 RUN apt-get update && apt-get install -y git 
 ENV HOME /var/mindx/meteor
 ENV LC_ALL "C"
